@@ -259,10 +259,10 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        931,
-                        932
+                        933,
+                        934
                       ],
-                      "referencedDeclaration": 932,
+                      "referencedDeclaration": 934,
                       "src": "279:7:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
@@ -697,10 +697,10 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        931,
-                        932
+                        933,
+                        934
                       ],
-                      "referencedDeclaration": 931,
+                      "referencedDeclaration": 933,
                       "src": "816:7:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
@@ -1172,10 +1172,10 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        931,
-                        932
+                        933,
+                        934
                       ],
-                      "referencedDeclaration": 932,
+                      "referencedDeclaration": 934,
                       "src": "279:7:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
@@ -1610,10 +1610,10 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        931,
-                        932
+                        933,
+                        934
                       ],
-                      "referencedDeclaration": 931,
+                      "referencedDeclaration": 933,
                       "src": "816:7:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
@@ -1872,8 +1872,8 @@
     "version": "0.5.8+commit.23d335f2.Emscripten.clang"
   },
   "networks": {},
-  "schemaVersion": "3.0.10",
-  "updatedAt": "2019-06-14T01:18:23.234Z",
+  "schemaVersion": "3.0.11",
+  "updatedAt": "2019-07-11T00:40:03.183Z",
   "devdoc": {
     "methods": {}
   },

@@ -10947,8 +10947,8 @@
       "transactionHash": "0xa8ff4a93262e46c1809d7e70bd731cab2170be16cbc97a274c73645f784a35dc"
     }
   },
-  "schemaVersion": "3.0.10",
-  "updatedAt": "2019-06-14T01:18:42.605Z",
+  "schemaVersion": "3.0.11",
+  "updatedAt": "2019-07-11T00:40:03.186Z",
   "devdoc": {
     "methods": {}
   },
