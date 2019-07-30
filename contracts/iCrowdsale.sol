@@ -1,13 +1,14 @@
+/* LOCK COMPILER VERSION */
 pragma solidity ^0.5.8;
 
 import "./cappediCrowdsale.sol";
 import "./timediCrowdsale.sol";
 import "./iToken.sol";
 
-
 contract iCrowdsale is cappediCrowdsale, timediCrowdsale, iToken {
-
+/* PRIVATE MODIFIER DOES NOT MAKE VARIABLE INVISIBLE */
   iToken private _iTokenContract;
+/* SHOULD DECLARE VISIBILITY */
   address _admin;
   address _minter;
   address payable private _wallet;
@@ -16,6 +17,7 @@ contract iCrowdsale is cappediCrowdsale, timediCrowdsale, iToken {
 
   event iTokensSold(address indexed buyer, address indexed recipient, uint256 value, uint256 amount);    // RECORDS: address paying for tokens, address receiving tokens, # of wei payed for tokens, # of tokens purchased
 
+/* PRIVATE MODIFIER DOES NOT MAKE MAPPING VARIABLE INVISIBLE */
   mapping(address => uint256) private _contribution;                            // TRACKS: total amount of wei contributed by ? address
 
   modifier onlyAdmin() {
@@ -64,16 +66,20 @@ contract iCrowdsale is cappediCrowdsale, timediCrowdsale, iToken {
     return _contribution[msg.sender];
   }
 
+/* buyToken FUNCTION COULD BE CLEANER */
   function buyToken(address recipient) public payable {
     uint256 weiValue = msg.value;
     uint256 iTokenAmount = (weiValue / _rate);
     require((_preCheck(recipient, weiValue)) == true);                          // CHECKS: time limit has not been reached and max amount raised has not been reached
+/* USE SAFEMATH TO AVOID OVERFLOW/UNDERFLOW */
     _raisedAmount += weiValue;                                                  // Update amount of wei raised
     require((_callMint(address(this), iTokenAmount)) == true, "iCrowdsale, failure with mint process");
     require(_iTokenContract.balanceOf(address(this)) >=  iTokenAmount, "iCrowdsale: insufficient token funds in contract");   // CHECKS: iCrowdsale contract has enough tokens to tranfer
     iToken._transfer(address(this), recipient, iTokenAmount);                   // Transfer wei value amount of tokens to recipient address
     emit iTokensSold(msg.sender, recipient, weiValue, iTokenAmount);
     _wallet.transfer(msg.value);                                                // Transfer wei funds to _wallet
+/* USE SAFEMATH TO AVOID OVERFLOW/UNDERFLOW */
+/* SHOULD OCCUR BEFORE EXTERNAL CALLS */
     _contribution[msg.sender] += weiValue;                                      // Update contribution wei amount of account msg.sender
   }
 

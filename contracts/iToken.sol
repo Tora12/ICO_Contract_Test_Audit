@@ -1,7 +1,8 @@
+/* LOCK COMPILER VERSION */
 pragma solidity ^0.5.8;
 
 contract iToken {
-
+/* PRIVATE MODIFIER DOES NOT MAKE VARIABLE INVISIBLE */
   string private _tokenName;
   string private _tokenSymbol;
   uint8 private _tokenDecimals;
@@ -10,6 +11,7 @@ contract iToken {
   event Transfer(address indexed from, address indexed to, uint value);            // RECORDS: # of Tokens Transferred from Account A to Account B
   event Approval(address indexed owner, address indexed spender, uint256 value);   // RECORDS: # of Tokens Approved by Account A for Account B to use
 
+/* PRIVATE MODIFIER DOES NOT MAKE MAPPING VARIABLE INVISIBLE */
   mapping(address => uint256) private _balance;                                 // TRACKS: Account A~? => w/ # of Tokens owned
   mapping(address => mapping (address => uint256)) private _allowance;          // TRACKS: Account A~? => approving Account B~? => w/ # of Tokens specified
 
@@ -49,7 +51,7 @@ contract iToken {
     _transfer(msg.sender, recipient, amount);
     return true;
   }
-
+/* THE APPROVE FUNCTION OF ERC-20 MIGHT LEAD TO VULNERABILITIES */
   function approve(address spender, uint256 value) public returns (bool success) {    // If successful, approves allowance of ? number of tokens from msg.sender to/for spender address to use
     _approve(msg.sender, spender, value);
     return true;
@@ -65,6 +67,7 @@ contract iToken {
 
   function _transfer(address _sender, address _recipient, uint256 _amount) internal {
     require(_balance[_sender] >= _amount, "iToken: inadequate amount for transfer from sender account");    // CHECKS: Account _sender has enough tokens specified to transfer
+/* USE SAFEMATH TO AVOID OVERFLOW/UNDERFLOW */
     _balance[_sender] -= _amount;
     _balance[_recipient] += _amount;
     emit Transfer(_sender, _recipient, _amount);
@@ -77,6 +80,7 @@ contract iToken {
   }
 
   function _mint(address _account, uint256 _amount) internal {
+/* USE SAFEMATH TO AVOID OVERFLOW/UNDERFLOW */
     _tokenSupply += _amount;
     _balance[_account] += _amount;
     emit Transfer(address(0), _account, _amount);
